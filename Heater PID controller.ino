@@ -8,7 +8,7 @@
 #define STATUS_LED_PIN 6 //Staus LED (external status led, not used in final circuit)
 
 // debug term used for pritnitng things on the fly if theres a problem
-bool debug = true; //For normal operation, set to flase
+bool debug = false; //For normal operation, set to flase. If true P, I and D values will be printed in the command window
 
 // PID tuning parameters (these were chosen using Ziegler-Nichols open loop method)
 double Kp = 50.89; // Proportional gain
@@ -33,7 +33,7 @@ PID myPID(&TempC, &Output, &TargetTemp, Kp, Ki, Kd, DIRECT);
 
 unsigned long lastRequest = 0;
 unsigned long lastTempRequest = 0;
-const unsigned long sampleIntervalMs = 2000; // sample every 1s
+const unsigned long sampleIntervalMs = 1000; // sample every 1s
 const unsigned long sampleTempIntervalMs = 1000; // sample every 1s
 
 
@@ -49,11 +49,14 @@ void setup() {
   //Configure PID
   myPID.SetMode(AUTOMATIC); //Turn the PID on 
   myPID.SetOutputLimits(0,255); //maps to analogwrite
-  myPID.SetSampleTime(sampleIntervalMs); // Sets the sample time to 500ms
+  myPID.SetSampleTime(sampleIntervalMs); // Sets the sample time to 1s
 
   //delay(1000);
-  Serial.print("Temp,PWM,Pterm,Iterm,Dterm");
+  Serial.print("Temp,PWM");
+  if (debug) {
+  Serial.print(",Pterm,Iterm,Dterm");
   Serial.print('\n');
+  }
 
 }
 
@@ -81,7 +84,7 @@ void loop() {
       myLastD = myPID.GetLastD();
 
     }
-    else {
+    else { // set power to zero if safety limit is exceeded
       Output = 0;
     }
 
