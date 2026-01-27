@@ -3,4 +3,4 @@ Repository of code used for the authors dissertation for a Master of Science in 
 This repository also contains code used for the additional work for publication of the dissertation material. 
 
 
-Copywright: the author - James Powell, 2026
+// Copywright: the author - James Powell, 2026
