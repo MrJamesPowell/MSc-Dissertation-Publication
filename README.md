@@ -12,4 +12,4 @@ R3 = 10K<br>
 _Note: All resistors used were 1/8 W metal film_<br>
 ### Microcontroller
 Pro Micro purchased from [Amazon.co.uk](https://www.amazon.co.uk/s?k=pro+micro&i=electronics&crid=2AYFRUJYJ22ZE&sprefix=pro+micr%2Celectronics%2C210&ref=nb_sb_noss_2)<br>
-Code: [Heater PID controller](MSc-Dissertation-Publication/Heater_PID_controller.ino)
+Code: [Heater PID controller](MrJamesPowell/MSc-Dissertation-Publication/Heater_PID_controller.ino)
